@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_large"
+    >
+
+  <ImageView
+      android:id="@+id/image_type_payment"
+      android:layout_width="32dp"
+      android:layout_height="wrap_content"
+      android:layout_centerVertical="true"
+      android:adjustViewBounds="true"
+      android:contentDescription="@string/app_name"
+      app:srcCompat="@drawable/card_mastercard"
+      />
+
+  <TextView
+      android:id="@+id/label_payment"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/spacing_xmedium"
+      android:layout_marginLeft="@dimen/spacing_xmedium"
+      android:layout_marginRight="@dimen/spacing_xmedium"
+      android:layout_marginStart="@dimen/spacing_xmedium"
+      android:layout_toEndOf="@+id/image_type_payment"
+      android:layout_toRightOf="@+id/image_type_payment"
+      android:text="Papal"
+      android:textSize="@dimen/letter_medium"
+      />
+
+
+  <TextView
+      android:id="@+id/label_token_payment"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/image_type_payment"
+      android:layout_marginEnd="@dimen/spacing_xmedium"
+      android:layout_marginLeft="@dimen/spacing_xmedium"
+      android:layout_marginRight="@dimen/spacing_xmedium"
+      android:layout_marginStart="@dimen/spacing_xmedium"
+      android:layout_marginTop="@dimen/spacing_small"
+      android:layout_toEndOf="@+id/image_type_payment"
+      android:layout_toRightOf="@+id/image_type_payment"
+      android:maxLines="1"
+      android:text="sdfdsfdsfjsfdlkdsjfkldsjkfljdsklfj"
+      android:textColor="@color/secondary_text_black"
+      android:textSize="@dimen/letter_small"
+      />
+
+
+</RelativeLayout>
+

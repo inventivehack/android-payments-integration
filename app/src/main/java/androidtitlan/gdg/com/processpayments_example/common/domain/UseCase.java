@@ -16,7 +16,7 @@ import rx.subscriptions.Subscriptions;
  * Architecture</a> y <a href="http://reactivex.io/intro.html">Programción Reactiva con
  * RxJava</a></p>
  */
-public abstract class UseCase {
+public abstract class UseCase<T> {
 
   private Subscription subscription = Subscriptions.empty();
 
@@ -30,7 +30,7 @@ public abstract class UseCase {
    *
    * @param useCaseSubscriber Es el {@link Subscriber} donde responderá el {@link Observable},
    */
-  @SuppressWarnings("unchecked") public void execute(Subscriber useCaseSubscriber) {
+  @SuppressWarnings("unchecked") public void execute(Subscriber<T> useCaseSubscriber) {
     this.subscription = buildObservableUseCase().subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(useCaseSubscriber);
@@ -52,5 +52,5 @@ public abstract class UseCase {
    *
    * @return {@link Observable} construido.
    */
-  protected abstract Observable buildObservableUseCase();
+  protected abstract Observable<T> buildObservableUseCase();
 }

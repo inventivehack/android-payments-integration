@@ -11,7 +11,7 @@ ext {
   butterknifeVersion = '8.0.1'
   picassoVersion = '2.5.2'
   glideVersion = '3.7.0'
-  daggerVersion = '2.0.2'
+  daggerVersion = '2.8'
   glassFishVersion = '10.0-b28'
   facebookVersion = '4.11.0'
   springIndicatorVersion = '1.0.2@aar'
@@ -104,6 +104,7 @@ ext {
       daggerCompiler     : buildDependency(daggerPackage,'dagger-compiler',daggerVersion),
       daggerAnnotations  : buildDependency(glassFishPackage,'javax.annotation',glassFishVersion)
   ]
+
 
   //Butter Knife dependencies
   butterKnifeDependencies = [

@@ -18,4 +18,6 @@
   <dimen name="letter_xlarge">22sp</dimen>
   <!--Toolbar-->
   <dimen name="elevation_toolbar">4dp</dimen>
+  <dimen name="divider_list_height">1dp</dimen>
+
 </resources>
