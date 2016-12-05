@@ -1,6 +1,9 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource;
 
+import android.util.Log;
 import androidtitlan.gdg.com.processpayments_example.BuildConfig;
+import androidtitlan.gdg.com.processpayments_example.payments.data.disk.PaymentDataImple;
+import androidtitlan.gdg.com.processpayments_example.payments.data.disk.PaymentDataLocal;
 import androidtitlan.gdg.com.processpayments_example.payments.data.entity.PaymentEntity;
 import androidtitlan.gdg.com.processpayments_example.payments.data.exception.StripeException;
 import com.stripe.android.Stripe;
@@ -23,22 +26,28 @@ public class CloudAddPaymentsDataSource implements AddPaymentsDataSource {
    * </p>
    */
   @Override public Observable<PaymentEntity> addCardStripe(Card cardStripeEntity) {
-    return Observable.create(subscriber -> {
-      if (validateCard(cardStripeEntity, subscriber)) {
-        new Stripe().createToken(cardStripeEntity, BuildConfig.STRIPE_KEY, new TokenCallback() {
-          @Override public void onError(Exception error) {
-            subscriber.onError(
-                new StripeException(error.getMessage(), StripeException.STRIPE_ERROR));
-          }
+    return Observable.create(new Observable.OnSubscribe<PaymentEntity>() {
+      @Override public void call(Subscriber<? super PaymentEntity> subscriber) {
+        if (validateCard(cardStripeEntity, subscriber)) {
+          new Stripe().createToken(cardStripeEntity, BuildConfig.STRIPE_KEY, new TokenCallback() {
+            @Override public void onError(Exception error) {
+              subscriber.onError(
+                  new StripeException(error.getMessage(), StripeException.STRIPE_ERROR));
+            }
 
-          @Override public void onSuccess(Token token) {
-            subscriber.onNext(
-                new PaymentEntity(token.getCard().getLast4(), token.getCard().getType(),
-                    token.getId()));
-            subscriber.onCompleted();
-          }
-        });
+            @Override public void onSuccess(Token token) {
+              subscriber.onNext(
+                  new PaymentEntity(cardStripeEntity.getLast4(), cardStripeEntity.getType(),
+                      token.getId()));
+              subscriber.onCompleted();
+            }
+          });
+        }
       }
+    }).doOnNext(paymentEntity -> {
+      Log.d("MYASD", paymentEntity.toString());
+      PaymentDataLocal paymentDataLocal = new PaymentDataImple();
+      paymentDataLocal.savePayment(paymentEntity);
     });
   }
 

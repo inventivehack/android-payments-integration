@@ -27,8 +27,9 @@ public class PaymentsViewHolder extends RecyclerView.ViewHolder {
 
   public void render(PaymentViewModel viewModel) {
     mViewModel = viewModel;
-    renderTypePayment(mViewModel.getBrand());
     renderTitlePayment(mViewModel.getTitlePayment());
+    renderTypePayment(mViewModel.getBrand());
+    renderTokenPayment(mViewModel.getTokenPayment());
   }
 
   private void renderTypePayment(String brand) {

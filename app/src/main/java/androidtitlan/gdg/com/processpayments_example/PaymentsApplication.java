@@ -4,6 +4,8 @@ import android.app.Application;
 import androidtitlan.gdg.com.processpayments_example.injector.components.DaggerMainComponent;
 import androidtitlan.gdg.com.processpayments_example.injector.components.MainComponent;
 import androidtitlan.gdg.com.processpayments_example.injector.modules.MainModule;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * 04/12/2016.
@@ -16,6 +18,7 @@ public class PaymentsApplication extends Application {
   @Override public void onCreate() {
     super.onCreate();
     initializeInjector();
+    setupRealm();
   }
 
   private void initializeInjector() {
@@ -25,4 +28,10 @@ public class PaymentsApplication extends Application {
   public MainComponent getMainComponent() {
     return mainComponent;
   }
+
+  private void setupRealm() {
+    RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
+    Realm.setDefaultConfiguration(realmConfiguration);
+  }
+
 }

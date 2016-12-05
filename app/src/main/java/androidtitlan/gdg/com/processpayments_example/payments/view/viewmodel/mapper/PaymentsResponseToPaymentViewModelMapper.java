@@ -1,5 +1,6 @@
 package androidtitlan.gdg.com.processpayments_example.payments.view.viewmodel.mapper;
 
+import android.util.Log;
 import androidtitlan.gdg.com.processpayments_example.common.domain.Mapper;
 import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
 import androidtitlan.gdg.com.processpayments_example.payments.view.viewmodel.PaymentViewModel;
@@ -17,7 +18,7 @@ public class PaymentsResponseToPaymentViewModelMapper
   }
 
   @Override public PaymentViewModel map(PaymentResponse value) {
-    return new PaymentViewModel(value.getTitlePayment(),value.getBrand(),value.getTokenPayment());
+    return new PaymentViewModel(value.getTitlePayment(), value.getBrand(), value.getTokenPayment());
   }
 
   @Override public PaymentResponse reverseMap(PaymentViewModel value) {

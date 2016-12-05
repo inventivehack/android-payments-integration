@@ -39,4 +39,12 @@ public class PaymentViewModel {
   public String getTokenPayment() {
     return tokenPayment;
   }
+
+  @Override public String toString() {
+    return "PaymentViewModel{" +
+        "titlePayment='" + titlePayment + '\'' +
+        ", brand='" + brand + '\'' +
+        ", tokenPayment='" + tokenPayment + '\'' +
+        '}';
+  }
 }

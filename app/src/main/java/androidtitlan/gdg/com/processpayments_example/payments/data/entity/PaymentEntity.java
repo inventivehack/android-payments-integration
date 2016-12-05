@@ -1,10 +1,15 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.entity;
 
-public class PaymentEntity {
+import io.realm.RealmObject;
+
+public class PaymentEntity extends RealmObject {
 
   private String titlePayment;
   private String brand;
   private String tokenPayment;
+
+  public PaymentEntity() {
+  }
 
   public PaymentEntity(String titlePayment, String brand, String tokenPayment) {
     this.titlePayment = titlePayment;
@@ -22,5 +27,13 @@ public class PaymentEntity {
 
   public String getTokenPayment() {
     return tokenPayment;
+  }
+
+  @Override public String toString() {
+    return "PaymentEntity{" +
+        "titlePayment='" + titlePayment + '\'' +
+        ", brand='" + brand + '\'' +
+        ", tokenPayment='" + tokenPayment + '\'' +
+        '}';
   }
 }
