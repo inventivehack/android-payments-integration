@@ -1,0 +1,150 @@
+ext {
+  //Version
+  googleVersion = '9.4.0'
+  firebaseVersion = '9.4.0'
+  supportVersion = '24.2.1'
+  retrofitVersion = '2.1.0'
+  okHttpVersion = '3.4.1'
+  rxJavaVersion = '1.1.5'
+  rxAndroidVersion = '1.2.0'
+  circleImageVersion = '2.0.0'
+  butterknifeVersion = '8.0.1'
+  picassoVersion = '2.5.2'
+  glideVersion = '3.7.0'
+  daggerVersion = '2.0.2'
+  glassFishVersion = '10.0-b28'
+  facebookVersion = '4.11.0'
+  springIndicatorVersion = '1.0.2@aar'
+  expandableRecyclerViewVersion = '2.1.1'
+  imageCropperVersion = '2.2.5'
+  dexterVersion = '2.2.2'
+  stripeVersion = '1.0.5'
+  paypalVersion = '2.15.0'
+
+  junitVersion = '4.12'
+  mockitoVersion = '1.10.19'
+  robolectricVersion = '3.0'
+  hamcrestVersion = '1.1'
+
+  testVersion = '0.4.1'
+  testEspressoVersion = '2.2.1'
+
+  //Packages
+  googlePackage = 'com.google.android.gms'
+  firebasePackage = 'com.google.firebase'
+  supportPackage = 'com.android.support'
+  retrofitPackage = 'com.squareup.retrofit2'
+  okHttpPackage = 'com.squareup.okhttp3'
+  reactivePackage = 'io.reactivex'
+  hdodenhofPackage = 'de.hdodenhof'
+  jakeWhartonPackage = 'com.jakewharton'
+  picassoPackage = 'com.squareup.picasso'
+  glidePackage = 'com.github.bumptech.glide'
+  daggerPackage = 'com.google.dagger'
+  glassFishPackage = 'org.glassfish'
+  facebookPackage = 'com.facebook.android'
+  springIndicatorPackage = 'com.github.chenupt.android'
+  expandableRecyclerViewPackage = 'com.bignerdranch.android'
+  imageCropperPackage = 'com.theartofdev.edmodo'
+  dexterPackage = 'com.karumi'
+  stripePackage = 'com.stripe'
+  paypalPackage = 'com.paypal.sdk'
+
+  junitPackage = 'junit'
+  mockitoPackage = 'org.mockito'
+  robolectricPackage = 'org.robolectric'
+  hamcrestPackage = 'org.hamcrest'
+
+  testPackage = 'com.android.support.test'
+  testEspressoPackage = 'com.android.support.test.espresso'
+
+  //Support Libraries dependencies
+  supportDependencies = [
+      design             : buildDependency(supportPackage, 'design', supportVersion),
+      recyclerView       : buildDependency(supportPackage, 'recyclerview-v7', supportVersion),
+      cardView           : buildDependency(supportPackage, 'cardview-v7', supportVersion),
+      appCompat          : buildDependency(supportPackage, 'appcompat-v7', supportVersion),
+      supportAnnotation  : buildDependency(supportPackage, 'support-annotations', supportVersion),
+      palette            : buildDependency(supportPackage, 'palette-v7', supportVersion),
+      percent            : buildDependency(supportPackage, 'percent', supportVersion)
+  ]
+
+  //Play services Dependencies
+  playServicesDependencies = [
+      googlePlayServices : buildDependency(googlePackage, 'play-services-gcm', googleVersion),
+      googlePlayMaps : buildDependency(googlePackage, 'play-services-maps', googleVersion),
+      googlePlayLocation : buildDependency(googlePackage, 'play-services-location', googleVersion)
+  ]
+
+
+  //Firebase Dependencies
+  firebaseDependencies = [
+      firebaseMessaging : buildDependency(firebasePackage, 'firebase-messaging', firebaseVersion),
+  ]
+
+
+  //Retrofit Libraries dependencies
+  retrofitDependencies = [
+      retrofit: buildDependency(retrofitPackage, 'retrofit', retrofitVersion),
+      gson    : buildDependency(retrofitPackage, 'converter-gson', retrofitVersion),
+      rxJava  : buildDependency(retrofitPackage, 'adapter-rxjava', retrofitVersion),
+      loggingInterceptor : buildDependency(okHttpPackage, 'logging-interceptor', okHttpVersion),
+        okHttp : buildDependency(okHttpPackage, 'okhttp', okHttpVersion)
+  ]
+
+  //RX Libraries dependencies
+  reactiveDependencies = [
+      rxJava   : buildDependency(reactivePackage, 'rxjava', rxJavaVersion),
+      rxAndroid: buildDependency(reactivePackage, 'rxandroid', rxAndroidVersion)
+  ]
+
+  //Dagger Libraries dependencies
+  daggerDependencies = [
+      dagger             : buildDependency(daggerPackage,'dagger',daggerVersion),
+      daggerCompiler     : buildDependency(daggerPackage,'dagger-compiler',daggerVersion),
+      daggerAnnotations  : buildDependency(glassFishPackage,'javax.annotation',glassFishVersion)
+  ]
+
+  //Butter Knife dependencies
+  butterKnifeDependencies = [
+      butterknife : buildDependency(jakeWhartonPackage, 'butterknife', butterknifeVersion),
+      butterknifeCompiler : buildDependency(jakeWhartonPackage, 'butterknife-compiler', butterknifeVersion)
+  ]
+
+  //General Libraries dependencies
+  circleImageView = buildDependency(hdodenhofPackage, 'circleimageview', circleImageVersion)
+  picasso = buildDependency(picassoPackage, 'picasso', picassoVersion)
+  glide = buildDependency(glidePackage, 'glide', glideVersion)
+  facebook = buildDependency(facebookPackage,'facebook-android-sdk',facebookVersion)
+  springIndicator = buildDependency(springIndicatorPackage,'springindicator',springIndicatorVersion)
+  expandableRecyclerView = buildDependency(expandableRecyclerViewPackage, 'expandablerecyclerview', expandableRecyclerViewVersion)
+  imageCropper = buildDependency(imageCropperPackage, 'android-image-cropper', imageCropperVersion)
+  dexter = buildDependency(dexterPackage, 'dexter', dexterVersion)
+  stripe = buildDependency(stripePackage, 'stripe-android', stripeVersion)
+  paypal = buildDependency(paypalPackage, 'paypal-android-sdk', paypalVersion)
+
+  //Testing
+  testingDependencies = [
+      junit       : buildDependency(junitPackage, 'junit', junitVersion),
+      mockito     : buildDependency(mockitoPackage, 'mockito-core', mockitoVersion),
+      robolectric : buildDependency(robolectricPackage, 'robolectric',   robolectricVersion),
+      hamcrest    : buildDependency(hamcrestPackage, 'hamcrest-library',   hamcrestVersion)
+  ]
+
+  testingSupportLibraryDependencies = [
+      runner : buildDependency(testPackage, 'runner', testVersion),
+      rules  : buildDependency(testPackage, 'rules', testVersion)
+
+  ]
+
+  testingEspressoDependencies  = [
+      espressoCore     :buildDependency(testEspressoPackage, 'espresso-core', testEspressoVersion),
+      espressoContrib  :buildDependency(testEspressoPackage, 'espresso-contrib', testEspressoVersion),
+      espressoIntents  :buildDependency(testEspressoPackage, 'espresso-intents', testEspressoVersion)
+  ]
+
+}
+
+String buildDependency(String pack, String dependency, String version) {
+  return "${pack}:${dependency}:${version}"
+}
