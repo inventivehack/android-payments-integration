@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+  <TextView
+      android:id="@+id/btn_add_stripe"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/selectableItemBackground"
+      android:clickable="true"
+      android:drawableLeft="@drawable/card"
+      android:drawablePadding="@dimen/spacing_large"
+      android:drawableStart="@drawable/card"
+      android:padding="@dimen/spacing_xlarge"
+      android:text="@string/btn_add_stripe"
+      />
+  <View
+
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="@color/divider_black"
+      />
+  <TextView
+      android:id="@+id/btn_add_conekta"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/selectableItemBackground"
+      android:clickable="true"
+      android:drawableLeft="@drawable/card"
+      android:drawablePadding="@dimen/spacing_large"
+      android:drawableStart="@drawable/card"
+      android:padding="@dimen/spacing_xlarge"
+      android:text="@string/btn_add_conekta"
+      />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="@color/divider_black"
+      />
+
+  <TextView
+      android:id="@+id/btn_add_paypal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/selectableItemBackground"
+      android:clickable="true"
+      android:drawableLeft="@drawable/paypal"
+      android:drawablePadding="@dimen/spacing_large"
+      android:drawableStart="@drawable/paypal"
+      android:padding="@dimen/spacing_xlarge"
+      android:text="@string/btn_paypal_account"
+      />
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="@color/divider_black"
+      />
+
+
+</LinearLayout>

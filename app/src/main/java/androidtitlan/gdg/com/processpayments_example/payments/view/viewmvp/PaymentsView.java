@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface PaymentsView extends Presenter.View {
   void showPayments(List<PaymentViewModel> map);
+
+  void showAddPaymentScreen();
 }

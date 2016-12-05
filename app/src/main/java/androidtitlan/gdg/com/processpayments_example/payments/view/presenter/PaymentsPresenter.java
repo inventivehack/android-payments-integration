@@ -26,9 +26,14 @@ public class PaymentsPresenter extends Presenter<PaymentsView> {
     getPaymentsUseCase.execute(new GetPaymentsSubscriber());
   }
 
-  @Override public void destroy() {
-
+  public void addPayment() {
+    getView().showAddPaymentScreen();
   }
+
+  @Override public void destroy() {
+    getPaymentsUseCase.unSubscribe();
+  }
+
 
   private class GetPaymentsSubscriber extends Subscriber<List<PaymentResponse>> {
     @Override public void onCompleted() {

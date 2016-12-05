@@ -1,4 +1,8 @@
 <resources>
   <string name="app_name">Process payments -  Example</string>
   <string name="btn_add_payment">Añadir método de pago</string>
+  <string name="btn_add_stripe">Stripe</string>
+  <string name="btn_add_conekta">Conekta</string>
+  <string name="btn_paypal_account">Cuenta de PayPal</string>
+  <string name="title_add_payment">Añadir Método de pago</string>
 </resources>

@@ -18,7 +18,9 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidtitlan.gdg.com.processpayments_example.PaymentsApplication;
 import androidtitlan.gdg.com.processpayments_example.R;
+import androidtitlan.gdg.com.processpayments_example.injector.components.MainComponent;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -62,6 +64,10 @@ public abstract class BaseFragment extends Fragment {
    * {@link BaseFragment#bindViews(View)}.
    */
   protected void initView(View view, Bundle savedInstanceState) {
+  }
+
+  protected MainComponent getMainComponent() {
+    return ((PaymentsApplication) getActivity().getApplication()).getMainComponent();
   }
 
   /**
