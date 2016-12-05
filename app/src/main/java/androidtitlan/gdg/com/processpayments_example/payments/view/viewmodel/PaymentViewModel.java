@@ -16,7 +16,7 @@ public class PaymentViewModel {
   public static final String VISA = "Visa";
   public static final String MASTERCARD = "MasterCard";
   public static final String UNKNOWN = "Unknown";
-  public static final String PAYPAL = "Paypal";
+  public static final String PAYPAL = "PayPal";
 
   private String titlePayment;
   private String brand;

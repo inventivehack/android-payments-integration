@@ -3,8 +3,7 @@ package androidtitlan.gdg.com.processpayments_example.payments.data.repository.d
 import androidtitlan.gdg.com.processpayments_example.payments.data.disk.PaymentDataImple;
 import androidtitlan.gdg.com.processpayments_example.payments.data.disk.PaymentDataLocal;
 import androidtitlan.gdg.com.processpayments_example.payments.data.entity.PaymentEntity;
-import com.stripe.android.model.Card;
-import java.util.ArrayList;
+import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
 import java.util.List;
 import rx.Observable;
 
@@ -14,6 +13,15 @@ public class DiskGetPaymentsDataSource implements GetPaymentsDataSource {
     return Observable.create(subscriber -> {
       PaymentDataLocal paymentDataLocal = new PaymentDataImple();
       subscriber.onNext(paymentDataLocal.getPayments());
+      subscriber.onCompleted();
+    });
+  }
+
+  @Override public Observable<PaymentEntity> addPayPalAccount(PaymentEntity paymentEntity) {
+    return Observable.create(subscriber -> {
+      PaymentDataLocal paymentDataLocal = new PaymentDataImple();
+      paymentDataLocal.savePayment(paymentEntity);
+      subscriber.onNext(paymentEntity);
       subscriber.onCompleted();
     });
   }

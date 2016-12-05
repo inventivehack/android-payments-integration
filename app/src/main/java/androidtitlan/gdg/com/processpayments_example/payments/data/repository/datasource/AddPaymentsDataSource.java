@@ -1,6 +1,7 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource;
 
 import androidtitlan.gdg.com.processpayments_example.payments.data.entity.PaymentEntity;
+import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
 import com.stripe.android.model.Card;
 import rx.Observable;
 

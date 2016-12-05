@@ -20,5 +20,6 @@
   <string name="message_cvc_card_invalid">El código CVC es inválido</string>
   <string name="message_card_invalid">La tarjeta es invalida</string>
   <string name="message_error_response_network">Ocurrió un error.\nVuelva a intentarlo</string>
+  <string name="message_error_add_paypal">Ocurrió un error al obtener su cuenta de PayPal.\nVuelva a inténtalo</string>
 
 </resources>

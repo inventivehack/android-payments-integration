@@ -80,8 +80,8 @@ public class AddCardStripePresenter extends Presenter<AddCardStripeView> {
     /**
      * Al obtener el token de stripe, se procede a enviarlo al servidor.
      */
-    @Override public void onNext(PaymentResponse tokenStripeResponse) {
-      getView().showToken(tokenStripeResponse.getTokenPayment());
+    @Override public void onNext(PaymentResponse paymentResponse) {
+      getView().showToken(paymentResponse.getTokenPayment());
       getView().returnPaymentPreviousScreen();
     }
   }

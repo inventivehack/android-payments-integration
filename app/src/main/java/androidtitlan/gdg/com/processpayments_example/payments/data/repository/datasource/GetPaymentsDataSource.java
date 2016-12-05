@@ -1,6 +1,7 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource;
 
 import androidtitlan.gdg.com.processpayments_example.payments.data.entity.PaymentEntity;
+import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
 import java.util.List;
 import rx.Observable;
 
@@ -10,4 +11,6 @@ import rx.Observable;
 public interface GetPaymentsDataSource {
 
   Observable<List<PaymentEntity>> getPayments();
+
+  Observable<PaymentEntity> addPayPalAccount(PaymentEntity paymentEntity);
 }

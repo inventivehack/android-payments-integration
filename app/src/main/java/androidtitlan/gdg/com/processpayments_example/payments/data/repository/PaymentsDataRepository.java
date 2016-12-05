@@ -1,6 +1,7 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.repository;
 
 import androidtitlan.gdg.com.processpayments_example.common.domain.Mapper;
+import androidtitlan.gdg.com.processpayments_example.payments.data.entity.PaymentEntity;
 import androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource.AddPaymentsDataSource;
 import androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource.GetPaymentsDataSource;
 import androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource.PaymentsDataSourceFactory;
@@ -27,8 +28,7 @@ public class PaymentsDataRepository implements PaymentsRepository {
   private final PaymentsDataSourceFactory mSourceFactory;
   private final PaymentEntityToPaymentResponseMapper mMapper;
 
-  @Inject
-  public PaymentsDataRepository(PaymentsDataSourceFactory sourceFactory,
+  @Inject public PaymentsDataRepository(PaymentsDataSourceFactory sourceFactory,
       PaymentEntityToPaymentResponseMapper mapper) {
     mSourceFactory = sourceFactory;
     mMapper = mapper;
@@ -36,13 +36,19 @@ public class PaymentsDataRepository implements PaymentsRepository {
 
   @Override public Observable<PaymentResponse> addCardStripe(Card cardStripeEntity) {
     final AddPaymentsDataSource paymentsDataSource =
-        mSourceFactory.createDiskAddPaymentsDataSource();
+        mSourceFactory.createCloudAddPaymentsDataSource();
     return paymentsDataSource.addCardStripe(cardStripeEntity).map(mMapper::map);
+  }
+
+  @Override public Observable<PaymentResponse> addPayPalAccount(PaymentEntity paymentEntity) {
+    final GetPaymentsDataSource paymentsDataSource =
+        mSourceFactory.createDiskGetPaymentsDataSource();
+    return paymentsDataSource.addPayPalAccount(paymentEntity).map(mMapper::map);
   }
 
   @Override public Observable<List<PaymentResponse>> getPayments() {
     final GetPaymentsDataSource paymentsDataSource =
-        mSourceFactory.createCloudGetPaymentsDataSource();
+        mSourceFactory.createDiskGetPaymentsDataSource();
     return paymentsDataSource.getPayments().map(mMapper::map);
   }
 }

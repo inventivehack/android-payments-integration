@@ -16,10 +16,7 @@ public interface AddPaymentsView extends Presenter.View {
 
   void showErrorAddPaypal();
 
-  //void showLoadingAddPaypalAccount();
-  //
-  //void hideLoadingAddPaypalAccount();
+  void showToken(String tokenPayment);
 
   void returnPaymentPreviousScreen();
-
 }

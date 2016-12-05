@@ -1,8 +1,11 @@
 package androidtitlan.gdg.com.processpayments_example.payments.view.presenter;
 
 import androidtitlan.gdg.com.processpayments_example.common.view.Presenter;
+import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
+import androidtitlan.gdg.com.processpayments_example.payments.domain.usecase.AddPayPalAccount;
 import androidtitlan.gdg.com.processpayments_example.payments.view.viewmvp.AddPaymentsView;
 import javax.inject.Inject;
+import rx.Subscriber;
 
 /**
  * Presentador al obtener para añadir un tarjeta como método de pago que maneja toda la lógica de
@@ -13,8 +16,10 @@ import javax.inject.Inject;
  */
 public class AddPaymentPresenter extends Presenter<AddPaymentsView> {
 
-  @Inject
-  public AddPaymentPresenter() {
+  private AddPayPalAccount mAddPayPalAccount;
+
+  @Inject public AddPaymentPresenter(AddPayPalAccount addPayPalAccount) {
+    mAddPayPalAccount = addPayPalAccount;
   }
 
   public void selectStripe() {
@@ -34,5 +39,24 @@ public class AddPaymentPresenter extends Presenter<AddPaymentsView> {
   }
 
   @Override public void destroy() {
+  }
+
+  public void sendAuthorizationCodePaypal(String authorizationCode) {
+    mAddPayPalAccount.executeAddPayPalAccount(authorizationCode, new AddPayPalAccountSubscriber());
+  }
+
+  private class AddPayPalAccountSubscriber extends Subscriber<PaymentResponse> {
+    @Override public void onCompleted() {
+
+    }
+
+    @Override public void onError(Throwable e) {
+
+    }
+
+    @Override public void onNext(PaymentResponse paymentResponse) {
+      getView().showToken(paymentResponse.getTokenPayment());
+      getView().returnPaymentPreviousScreen();
+    }
   }
 }

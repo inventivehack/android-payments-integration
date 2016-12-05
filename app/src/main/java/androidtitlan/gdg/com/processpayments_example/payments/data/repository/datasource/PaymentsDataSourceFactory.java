@@ -18,11 +18,11 @@ public class PaymentsDataSourceFactory {
   public PaymentsDataSourceFactory() {
   }
 
-  public GetPaymentsDataSource createCloudGetPaymentsDataSource() {
+  public GetPaymentsDataSource createDiskGetPaymentsDataSource() {
     return new DiskGetPaymentsDataSource();
   }
 
-  public AddPaymentsDataSource createDiskAddPaymentsDataSource() {
+  public AddPaymentsDataSource createCloudAddPaymentsDataSource() {
     return new CloudAddPaymentsDataSource();
   }
 }
