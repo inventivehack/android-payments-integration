@@ -62,7 +62,8 @@ public class AddPaymentFragment extends BaseFragment implements AddPaymentsView 
   }
 
   @Override public void showAddStripeCardScreen() {
-
+    addFragment(AddCardStripeFragment.newInstance(), R.anim.slide_in_left, R.anim.slide_out_left,
+        R.anim.slide_in_right, R.anim.slide_out_right);
   }
 
   @Override public void showAddConektaCardScreen() {

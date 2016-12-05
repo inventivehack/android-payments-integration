@@ -15,4 +15,9 @@
     <item name="android:listDivider">@color/divider_black</item>
   </style>
 
+  <style name="MyErrorTextAddCard" parent="TextAppearance.AppCompat.Small">
+    <item name="android:textSize">@dimen/letter_xsmall</item>
+    <item name="android:textColor">@color/primary</item>
+  </style>
+
 </resources>

@@ -5,4 +5,20 @@
   <string name="btn_add_conekta">Conekta</string>
   <string name="btn_paypal_account">Cuenta de PayPal</string>
   <string name="title_add_payment">Añadir Método de pago</string>
+  <string name="hint_number_card">Número de Tarjeta</string>
+  <string name="hint_ccv">CCV</string>
+  <string name="hint_month">MM</string>
+  <string name="hint_year">YY</string>
+  <string name="message_cvv_empty">Ingresa el CVV  de tu tarjeta</string>
+  <string name="title_add_card">Agrega tu tarjeta</string>
+  <string name="message_number_card_empty">Ingresa tu número de tarjeta</string>
+  <string name="message_month_empty">Ingresa el mes de vencimiento de tu tarjeta</string>
+  <string name="message_year_empty">Ingresa el año de vencimiento de tu tarjeta</string>
+  <string name="message_loading_add_card">Añadiendo tarjeta</string>
+  <string name="message_number_card_invalid">El número de tarjeta es invalido</string>
+  <string name="message_date_card_invalid">La fecha de expiración es invalida</string>
+  <string name="message_cvc_card_invalid">El código CVC es inválido</string>
+  <string name="message_card_invalid">La tarjeta es invalida</string>
+  <string name="message_error_response_network">Ocurrió un error.\nVuelva a intentarlo</string>
+
 </resources>

@@ -27,13 +27,9 @@ import javax.inject.Singleton;
     return application;
   }
 
-  @Provides @Singleton
-  public PaymentsRepository provideActionRepository(PaymentsDataRepository actionsRepository) {
+  @Provides @Singleton PaymentsRepository provideActionRepository(
+      PaymentsDataRepository actionsRepository) {
     return actionsRepository;
   }
 
-  @Provides @Singleton
-  public UseCase<List<PaymentResponse>> provideGetPaymentsUseCase(GetPayments getPayments) {
-    return getPayments;
-  }
 }

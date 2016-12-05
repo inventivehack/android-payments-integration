@@ -15,6 +15,7 @@ import rx.Subscriber;
 public class GetPayments extends UseCase<List<PaymentResponse>> {
 
   private PaymentsRepository mPaymentsRepository;
+
   @Inject
   public GetPayments(PaymentsRepository paymentsRepository) {
     mPaymentsRepository = paymentsRepository;

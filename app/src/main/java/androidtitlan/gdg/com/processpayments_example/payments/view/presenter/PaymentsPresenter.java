@@ -1,8 +1,8 @@
 package androidtitlan.gdg.com.processpayments_example.payments.view.presenter;
 
-import androidtitlan.gdg.com.processpayments_example.common.domain.UseCase;
 import androidtitlan.gdg.com.processpayments_example.common.view.Presenter;
 import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
+import androidtitlan.gdg.com.processpayments_example.payments.domain.usecase.GetPayments;
 import androidtitlan.gdg.com.processpayments_example.payments.view.viewmodel.mapper.PaymentsResponseToPaymentViewModelMapper;
 import androidtitlan.gdg.com.processpayments_example.payments.view.viewmvp.PaymentsView;
 import java.util.List;
@@ -11,11 +11,10 @@ import rx.Subscriber;
 
 public class PaymentsPresenter extends Presenter<PaymentsView> {
 
-  private UseCase<List<PaymentResponse>> getPaymentsUseCase;
+  private GetPayments getPaymentsUseCase;
   private PaymentsResponseToPaymentViewModelMapper mMapper;
 
-  @Inject
-  public PaymentsPresenter(UseCase<List<PaymentResponse>> getPaymentsUseCase,
+  @Inject public PaymentsPresenter(GetPayments getPaymentsUseCase,
       PaymentsResponseToPaymentViewModelMapper mapper) {
     this.getPaymentsUseCase = getPaymentsUseCase;
     mMapper = mapper;
@@ -34,7 +33,6 @@ public class PaymentsPresenter extends Presenter<PaymentsView> {
     getPaymentsUseCase.unSubscribe();
   }
 
-
   private class GetPaymentsSubscriber extends Subscriber<List<PaymentResponse>> {
     @Override public void onCompleted() {
 
@@ -42,7 +40,6 @@ public class PaymentsPresenter extends Presenter<PaymentsView> {
 
     @Override public void onError(Throwable e) {
       e.printStackTrace();
-
     }
 
     @Override public void onNext(List<PaymentResponse> paymentResponses) {

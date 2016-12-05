@@ -194,6 +194,15 @@ public abstract class BaseFragment extends Fragment {
    *
    * @return Toolbar dentro de la Actividad.
    */
+
+  public void clearFragmentStack() {
+    int countStack = getFragmentManager().getBackStackEntryCount();
+
+    for (int i = 0; i < countStack; i++) {
+      getFragmentManager().popBackStackImmediate();
+    }
+  }
+
   @Nullable public Toolbar getToolbar() {
     return ((BaseActivity) getActivity()).getToolbar();
   }
