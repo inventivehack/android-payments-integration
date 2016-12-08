@@ -1,5 +1,6 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource;
 
+import android.app.Activity;
 import javax.inject.Inject;
 
 /**
@@ -7,15 +8,15 @@ import javax.inject.Inject;
  */
 public class PaymentsDataSourceFactory {
 
-
   /**
    * Provee un tipo de fuente de datos del sevidor.
    *
    * @return Tipo de fuente.
    */
+  private Activity mActivity;
 
-  @Inject
-  public PaymentsDataSourceFactory() {
+  @Inject public PaymentsDataSourceFactory(Activity activity) {
+    mActivity = activity;
   }
 
   public GetPaymentsDataSource createDiskGetPaymentsDataSource() {
@@ -23,6 +24,6 @@ public class PaymentsDataSourceFactory {
   }
 
   public AddPaymentsDataSource createCloudAddPaymentsDataSource() {
-    return new CloudAddPaymentsDataSource();
+    return new CloudAddPaymentsDataSource(mActivity);
   }
 }

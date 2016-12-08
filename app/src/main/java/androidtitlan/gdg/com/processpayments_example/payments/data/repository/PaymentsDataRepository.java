@@ -1,13 +1,14 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.repository;
 
 import androidtitlan.gdg.com.processpayments_example.common.domain.Mapper;
+import androidtitlan.gdg.com.processpayments_example.payments.data.entity.CardConekta;
+import androidtitlan.gdg.com.processpayments_example.payments.data.entity.CardStripe;
 import androidtitlan.gdg.com.processpayments_example.payments.data.entity.PaymentEntity;
 import androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource.AddPaymentsDataSource;
 import androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource.GetPaymentsDataSource;
 import androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource.PaymentsDataSourceFactory;
 import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
 import androidtitlan.gdg.com.processpayments_example.payments.domain.model.mapper.PaymentEntityToPaymentResponseMapper;
-import com.stripe.android.model.Card;
 import java.util.List;
 import javax.inject.Inject;
 import rx.Observable;
@@ -34,10 +35,16 @@ public class PaymentsDataRepository implements PaymentsRepository {
     mMapper = mapper;
   }
 
-  @Override public Observable<PaymentResponse> addCardStripe(Card cardStripeEntity) {
+  @Override public Observable<PaymentResponse> addCardStripe(CardStripe cardStripeEntity) {
     final AddPaymentsDataSource paymentsDataSource =
         mSourceFactory.createCloudAddPaymentsDataSource();
     return paymentsDataSource.addCardStripe(cardStripeEntity).map(mMapper::map);
+  }
+
+  @Override public Observable<PaymentResponse> addCardConekta(CardConekta cardConekta) {
+    final AddPaymentsDataSource paymentsDataSource =
+        mSourceFactory.createCloudAddPaymentsDataSource();
+    return paymentsDataSource.addCardConekta(cardConekta).map(mMapper::map);
   }
 
   @Override public Observable<PaymentResponse> addPayPalAccount(PaymentEntity paymentEntity) {

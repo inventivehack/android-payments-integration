@@ -9,6 +9,7 @@ import android.view.View;
 import androidtitlan.gdg.com.processpayments_example.BuildConfig;
 import androidtitlan.gdg.com.processpayments_example.R;
 import androidtitlan.gdg.com.processpayments_example.common.view.BaseFragment;
+import androidtitlan.gdg.com.processpayments_example.injector.components.PaymentsComponent;
 import androidtitlan.gdg.com.processpayments_example.payments.view.presenter.AddPaymentPresenter;
 import androidtitlan.gdg.com.processpayments_example.payments.view.viewmvp.AddPaymentsView;
 import butterknife.OnClick;
@@ -59,7 +60,7 @@ public class AddPaymentFragment extends BaseFragment implements AddPaymentsView 
   }
 
   private void initializeDagger() {
-    getMainComponent().inject(this);
+    getComponent(PaymentsComponent.class).inject(this);
   }
 
   private void initializePresenter() {
@@ -120,12 +121,13 @@ public class AddPaymentFragment extends BaseFragment implements AddPaymentsView 
   }
 
   @Override public void showAddStripeCardScreen() {
-    addFragment(AddCardStripeFragment.newInstance(), R.anim.slide_in_left, R.anim.slide_out_left,
-        R.anim.slide_in_right, R.anim.slide_out_right);
+    addFragment(AddCardFragment.newInstance(AddCardFragment.TYPE_PAYMENT_STRIPE),
+        R.anim.slide_in_left, R.anim.slide_out_left, R.anim.slide_in_right, R.anim.slide_out_right);
   }
 
   @Override public void showAddConektaCardScreen() {
-
+    addFragment(AddCardFragment.newInstance(AddCardFragment.TYPE_PAYMENT_CONEKTA),
+        R.anim.slide_in_left, R.anim.slide_out_left, R.anim.slide_in_right, R.anim.slide_out_right);
   }
 
   @Override public void showAddPaypalScreen() {

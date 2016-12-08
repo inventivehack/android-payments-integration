@@ -1,6 +1,7 @@
 package androidtitlan.gdg.com.processpayments_example;
 
 import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 import androidtitlan.gdg.com.processpayments_example.injector.components.DaggerMainComponent;
 import androidtitlan.gdg.com.processpayments_example.injector.components.MainComponent;
 import androidtitlan.gdg.com.processpayments_example.injector.modules.MainModule;
@@ -11,7 +12,7 @@ import io.realm.RealmConfiguration;
  * 04/12/2016.
  */
 
-public class PaymentsApplication extends Application {
+public class PaymentsApplication extends MultiDexApplication {
 
   private MainComponent mainComponent;
 

@@ -1,12 +1,11 @@
 package androidtitlan.gdg.com.processpayments_example.payments.view.presenter;
 
 import android.text.TextUtils;
-import androidtitlan.gdg.com.processpayments_example.common.domain.UseCase;
 import androidtitlan.gdg.com.processpayments_example.common.view.Presenter;
 import androidtitlan.gdg.com.processpayments_example.payments.data.exception.StripeErrorHandling;
 import androidtitlan.gdg.com.processpayments_example.payments.data.exception.StripeException;
 import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
-import androidtitlan.gdg.com.processpayments_example.payments.domain.usecase.AddStripeCard;
+import androidtitlan.gdg.com.processpayments_example.payments.domain.usecase.AddCard;
 import androidtitlan.gdg.com.processpayments_example.payments.view.viewmvp.AddCardStripeView;
 import javax.inject.Inject;
 import rx.Subscriber;
@@ -18,12 +17,14 @@ import rx.Subscriber;
  * @see <p>Para más información investigar más sobre el patrón <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">Model
  * View Presenter</a></p>
  */
-public class AddCardStripePresenter extends Presenter<AddCardStripeView> {
+public class AddCardPresenter extends Presenter<AddCardStripeView> {
 
-  private AddStripeCard mUseCaseAddPayment;
+  public static final int TYPE_PAYMENT_STRIPE = 1;
+  public static final int TYPE_PAYMENT_CONEKTA = 2;
 
-  @Inject
-  public AddCardStripePresenter(AddStripeCard useCaseAddPayment) {
+  private AddCard mUseCaseAddPayment;
+
+  @Inject public AddCardPresenter(AddCard useCaseAddPayment) {
     mUseCaseAddPayment = useCaseAddPayment;
   }
 
@@ -35,12 +36,13 @@ public class AddCardStripePresenter extends Presenter<AddCardStripeView> {
    * @param year Año de vencimiento de la tarjeta.
    * @param cvv CVV de la tarjeta.
    */
-  public void addPayment(String numberCard, String month, String year, String cvv) {
+  public void addPayment(String numberCard, String month, String year, String cvv,
+      int typePayment) {
     if (isValidCard(numberCard, month, year, cvv)) {
       getView().hideKeyBoard();
       getView().showLoginAddCard();
-      mUseCaseAddPayment.executeAddCardStripe(numberCard, Integer.parseInt(month),
-          Integer.parseInt(year), cvv, new AddCardStripeSubscriber());
+      mUseCaseAddPayment.executeAddCard(numberCard, month, year, cvv, typePayment,
+          new AddCardStripeSubscriber());
     }
   }
 
@@ -72,9 +74,9 @@ public class AddCardStripePresenter extends Presenter<AddCardStripeView> {
     }
 
     @Override public void onError(Throwable e) {
-      e.printStackTrace();
       getView().hideLoginAddCard();
       showStripeMessageError(e);
+      e.printStackTrace();
     }
 
     /**

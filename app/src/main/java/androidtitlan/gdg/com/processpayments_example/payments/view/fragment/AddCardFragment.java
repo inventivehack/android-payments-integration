@@ -15,7 +15,8 @@ import android.view.View;
 import android.widget.TextView;
 import androidtitlan.gdg.com.processpayments_example.R;
 import androidtitlan.gdg.com.processpayments_example.common.view.BaseFragment;
-import androidtitlan.gdg.com.processpayments_example.payments.view.presenter.AddCardStripePresenter;
+import androidtitlan.gdg.com.processpayments_example.injector.components.PaymentsComponent;
+import androidtitlan.gdg.com.processpayments_example.payments.view.presenter.AddCardPresenter;
 import androidtitlan.gdg.com.processpayments_example.payments.view.util.NumberCardChangeListener;
 import androidtitlan.gdg.com.processpayments_example.payments.view.viewmvp.AddCardStripeView;
 import butterknife.BindInt;
@@ -28,8 +29,11 @@ import javax.inject.Inject;
 /**
  * 05/12/2016.
  */
+public class AddCardFragment extends BaseFragment implements AddCardStripeView {
 
-public class AddCardStripeFragment extends BaseFragment implements AddCardStripeView {
+  public static final int TYPE_PAYMENT_STRIPE = 1;
+  public static final int TYPE_PAYMENT_CONEKTA = 2;
+  private static final String ARG_TYPE_PAYMENT = "type_payment";
 
   @BindInt(android.R.integer.config_shortAnimTime) int ANIMATION_DURATION;
 
@@ -42,10 +46,14 @@ public class AddCardStripeFragment extends BaseFragment implements AddCardStripe
   @BindView(R.id.label_error_card) TextView mLabelErrorCard;
 
   private ProgressDialog mProgressDialogAddCard;
-  @Inject AddCardStripePresenter mPresenter;
+  @Inject AddCardPresenter mPresenter;
 
-  public static AddCardStripeFragment newInstance() {
-    return new AddCardStripeFragment();
+  public static AddCardFragment newInstance(int typePayment) {
+    AddCardFragment addCardFragment = new AddCardFragment();
+    Bundle args = new Bundle();
+    args.putInt(ARG_TYPE_PAYMENT, typePayment);
+    addCardFragment.setArguments(args);
+    return addCardFragment;
   }
 
   @Override protected int getFragmentLayout() {
@@ -68,7 +76,7 @@ public class AddCardStripeFragment extends BaseFragment implements AddCardStripe
   }
 
   private void initializeDagger() {
-    getMainComponent().inject(this);
+    getComponent(PaymentsComponent.class).inject(this);
   }
 
   private void initializePresenter() {
@@ -81,7 +89,11 @@ public class AddCardStripeFragment extends BaseFragment implements AddCardStripe
 
   @OnClick(R.id.btn_add_payment) public void addPayment() {
     mPresenter.addPayment(mInputNumberCard.getText().toString(), mInputMonth.getText().toString(),
-        mInputYear.getText().toString(), mInputCCV.getText().toString());
+        mInputYear.getText().toString(), mInputCCV.getText().toString(), getTypePaymentFromArgs());
+  }
+
+  private int getTypePaymentFromArgs() {
+    return getArguments().getInt(ARG_TYPE_PAYMENT);
   }
 
   @OnTextChanged(R.id.input_number_card) public void changeTextNumberCard(CharSequence numberCard) {
@@ -209,7 +221,6 @@ public class AddCardStripeFragment extends BaseFragment implements AddCardStripe
     clearFragmentStack();
   }
 
-
   @Override public void showMessageNumberCardInvalid() {
     mContainerInputNumberCard.setError(getString(R.string.message_number_card_invalid));
   }
@@ -231,6 +242,6 @@ public class AddCardStripeFragment extends BaseFragment implements AddCardStripe
   }
 
   @Override public void showMessageStripeUnknownError() {
-    showMessageErrorCard(R.string.message_error_response_network);
+    showDefaultMessageSnackBar(R.string.message_error_response_network);
   }
 }

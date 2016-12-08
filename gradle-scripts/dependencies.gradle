@@ -20,6 +20,7 @@ ext {
   dexterVersion = '2.2.2'
   stripeVersion = '1.0.5'
   paypalVersion = '2.15.0'
+  conektaVersion = '2.1'
 
   junitVersion = '4.12'
   mockitoVersion = '1.10.19'
@@ -49,6 +50,7 @@ ext {
   dexterPackage = 'com.karumi'
   stripePackage = 'com.stripe'
   paypalPackage = 'com.paypal.sdk'
+  conektaPackage = 'io.conekta'
 
   junitPackage = 'junit'
   mockitoPackage = 'org.mockito'
@@ -89,7 +91,7 @@ ext {
       gson    : buildDependency(retrofitPackage, 'converter-gson', retrofitVersion),
       rxJava  : buildDependency(retrofitPackage, 'adapter-rxjava', retrofitVersion),
       loggingInterceptor : buildDependency(okHttpPackage, 'logging-interceptor', okHttpVersion),
-        okHttp : buildDependency(okHttpPackage, 'okhttp', okHttpVersion)
+      okHttp : buildDependency(okHttpPackage, 'okhttp', okHttpVersion)
   ]
 
   //RX Libraries dependencies
@@ -123,6 +125,7 @@ ext {
   dexter = buildDependency(dexterPackage, 'dexter', dexterVersion)
   stripe = buildDependency(stripePackage, 'stripe-android', stripeVersion)
   paypal = buildDependency(paypalPackage, 'paypal-android-sdk', paypalVersion)
+  conekta = buildDependency(conektaPackage, 'conektasdk', conektaVersion)
 
   //Testing
   testingDependencies = [

@@ -5,7 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import androidtitlan.gdg.com.processpayments_example.PaymentsApplication;
 import androidtitlan.gdg.com.processpayments_example.R;
+import androidtitlan.gdg.com.processpayments_example.injector.components.MainComponent;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -84,4 +86,9 @@ public abstract class BaseActivity extends AppCompatActivity {
    * @return Identificador del layout
    */
   protected abstract int getLayout();
+
+  protected MainComponent getApplicationComponent() {
+    return ((PaymentsApplication) getApplication()).getMainComponent();
+  }
+
 }

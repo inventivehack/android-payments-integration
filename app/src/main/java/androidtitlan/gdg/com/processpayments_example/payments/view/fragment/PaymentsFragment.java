@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import androidtitlan.gdg.com.processpayments_example.R;
 import androidtitlan.gdg.com.processpayments_example.common.view.BaseFragment;
+import androidtitlan.gdg.com.processpayments_example.injector.components.PaymentsComponent;
 import androidtitlan.gdg.com.processpayments_example.payments.view.adapter.PaymentsAdapter;
 import androidtitlan.gdg.com.processpayments_example.payments.view.presenter.PaymentsPresenter;
 import androidtitlan.gdg.com.processpayments_example.payments.view.viewmodel.PaymentViewModel;
@@ -50,7 +51,7 @@ public class PaymentsFragment extends BaseFragment implements PaymentsView {
   }
 
   private void initializeDagger() {
-    getMainComponent().inject(this);
+    getComponent(PaymentsComponent.class).inject(this);
   }
 
 
