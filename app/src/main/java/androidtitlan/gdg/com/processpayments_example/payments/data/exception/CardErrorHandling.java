@@ -4,19 +4,19 @@ package androidtitlan.gdg.com.processpayments_example.payments.data.exception;
 /**
  * Manejador de errores con Stripe de la capa de datos.
  */
-public class StripeErrorHandling {
+public class CardErrorHandling {
 
   private Throwable cause;
 
-  public StripeErrorHandling(Throwable cause) {
+  public CardErrorHandling(Throwable cause) {
     this.cause = cause;
   }
 
   public int getTypeError() {
-    if (cause instanceof StripeException) {
-      return (((StripeException) cause).getTypeError());
+    if (cause instanceof CardException) {
+      return (((CardException) cause).getTypeError());
     } else {
-      return StripeException.UNKNOWN_ERROR;
+      return CardException.UNKNOWN_ERROR;
     }
   }
 

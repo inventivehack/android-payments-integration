@@ -2,8 +2,8 @@ package androidtitlan.gdg.com.processpayments_example.payments.view.presenter;
 
 import android.text.TextUtils;
 import androidtitlan.gdg.com.processpayments_example.common.view.Presenter;
-import androidtitlan.gdg.com.processpayments_example.payments.data.exception.StripeErrorHandling;
-import androidtitlan.gdg.com.processpayments_example.payments.data.exception.StripeException;
+import androidtitlan.gdg.com.processpayments_example.payments.data.exception.CardErrorHandling;
+import androidtitlan.gdg.com.processpayments_example.payments.data.exception.CardException;
 import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
 import androidtitlan.gdg.com.processpayments_example.payments.domain.usecase.AddCard;
 import androidtitlan.gdg.com.processpayments_example.payments.view.viewmvp.AddCardStripeView;
@@ -93,25 +93,25 @@ public class AddCardPresenter extends Presenter<AddCardStripeView> {
    * conexión.
    */
   private void showStripeMessageError(Throwable e) {
-    StripeErrorHandling stripeErrorHandling = new StripeErrorHandling(e);
+    CardErrorHandling stripeErrorHandling = new CardErrorHandling(e);
 
     switch (stripeErrorHandling.getTypeError()) {
-      case StripeException.INVALIDATE_NUMBER_ERROR:
+      case CardException.INVALIDATE_NUMBER_ERROR:
         getView().showMessageNumberCardInvalid();
         break;
-      case StripeException.INVALIDATE_DATE_ERROR:
+      case CardException.INVALIDATE_DATE_ERROR:
         getView().showMessageDateInvalid();
         break;
-      case StripeException.INVALIDATE_CVC_ERROR:
+      case CardException.INVALIDATE_CVC_ERROR:
         getView().showMessageCVCInvalid();
         break;
-      case StripeException.INVALIDATE_DETAIL_ERROR:
+      case CardException.INVALIDATE_DETAIL_ERROR:
         getView().showMessageCardInvalid();
         break;
-      case StripeException.STRIPE_ERROR:
+      case CardException.CARD_SERVER_ERROR:
         getView().showMessageStripeError(stripeErrorHandling.getMessage());
         break;
-      case StripeException.UNKNOWN_ERROR:
+      case CardException.UNKNOWN_ERROR:
         getView().showMessageStripeUnknownError();
         break;
     }

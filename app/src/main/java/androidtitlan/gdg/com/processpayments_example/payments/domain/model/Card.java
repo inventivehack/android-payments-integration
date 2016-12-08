@@ -38,15 +38,5 @@ public class Card {
   public int getTypePayment() {
     return typePayment;
   }
-
-  @Override public String toString() {
-    return "Card{" +
-        "number='" + number + '\'' +
-        ", expMonth='" + expMonth + '\'' +
-        ", extYear='" + extYear + '\'' +
-        ", cvc='" + cvc + '\'' +
-        ", typePayment=" + typePayment +
-        '}';
-  }
 }
 

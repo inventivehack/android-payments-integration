@@ -8,7 +8,7 @@ import androidtitlan.gdg.com.processpayments_example.payments.data.disk.PaymentD
 import androidtitlan.gdg.com.processpayments_example.payments.data.entity.CardConekta;
 import androidtitlan.gdg.com.processpayments_example.payments.data.entity.CardStripe;
 import androidtitlan.gdg.com.processpayments_example.payments.data.entity.PaymentEntity;
-import androidtitlan.gdg.com.processpayments_example.payments.data.exception.StripeException;
+import androidtitlan.gdg.com.processpayments_example.payments.data.exception.CardException;
 import com.stripe.android.Stripe;
 import com.stripe.android.TokenCallback;
 import com.stripe.android.model.Card;
@@ -44,7 +44,7 @@ public class CloudAddPaymentsDataSource implements AddPaymentsDataSource {
           new Stripe().createToken(cardStripeEntity, BuildConfig.STRIPE_KEY, new TokenCallback() {
             @Override public void onError(Exception error) {
               subscriber.onError(
-                  new StripeException(error.getMessage(), StripeException.STRIPE_ERROR));
+                  new CardException(error.getMessage(), CardException.CARD_SERVER_ERROR));
             }
 
             @Override public void onSuccess(com.stripe.android.model.Token token) {
@@ -68,37 +68,48 @@ public class CloudAddPaymentsDataSource implements AddPaymentsDataSource {
         Token token = new Token(mActivity);
         token.onCreateTokenListener(data -> {
           Log.d(LOG_TAG, data.toString());
+
           try {
-            CardStripe cardStripe = new CardStripe(cardConektaEntity.getNumber(), 0, 0, "");
-            subscriber.onNext(new PaymentEntity(cardStripe.getLast4(), cardStripe.getType(),
-                data.getString("id")));
+            if (data.has("id")) {
+              CardStripe cardStripe = new CardStripe(cardConektaEntity.getNumber(), 0, 0, "");
+              subscriber.onNext(new PaymentEntity(cardStripe.getLast4(), cardStripe.getType(),
+                  data.getString("id")));
+            } else {
+              subscriber.onError(new CardException(data.getString("message_to_purchaser"),
+                  CardException.CARD_SERVER_ERROR));
+            }
           } catch (JSONException e) {
             e.printStackTrace();
-            subscriber.onError(new StripeException(e.getMessage(), StripeException.STRIPE_ERROR));
+            subscriber.onError(new CardException(e.getMessage(), CardException.UNKNOWN_ERROR));
           }
           subscriber.onCompleted();
         });
-        token.create(cardConektaEntity.provideCardConekta());
+
+        try {
+          token.create(cardConektaEntity.provideCardConekta());
+        } catch (RuntimeException e) {
+          subscriber.onError(new CardException(e.getMessage(), CardException.CARD_SERVER_ERROR));
+        }
       }
     }).doOnNext(this::savePayment);
   }
 
-  private boolean validateCard(Card card, Subscriber subscriber) {
+  private boolean validateCard(CardStripe card, Subscriber subscriber) {
     if (!card.validateNumber()) {
-      subscriber.onError(new StripeException(StripeException.MESSAGE_INVALIDATE_NUMBER_ERROR,
-          StripeException.INVALIDATE_NUMBER_ERROR));
+      subscriber.onError(new CardException(CardException.MESSAGE_INVALIDATE_NUMBER_ERROR,
+          CardException.INVALIDATE_NUMBER_ERROR));
       return false;
     } else if (!card.validateExpiryDate()) {
-      subscriber.onError(new StripeException(StripeException.MESSAGE_INVALIDATE_DATE_ERROR,
-          StripeException.INVALIDATE_DATE_ERROR));
+      subscriber.onError(new CardException(CardException.MESSAGE_INVALIDATE_DATE_ERROR,
+          CardException.INVALIDATE_DATE_ERROR));
       return false;
     } else if (!card.validateCVC()) {
-      subscriber.onError(new StripeException(StripeException.MESSAGE_INVALIDATE_CVC_ERROR,
-          StripeException.INVALIDATE_CVC_ERROR));
+      subscriber.onError(new CardException(CardException.MESSAGE_INVALIDATE_CVC_ERROR,
+          CardException.INVALIDATE_CVC_ERROR));
       return false;
     } else if (!card.validateCard()) {
-      subscriber.onError(new StripeException(StripeException.MESSAGE_INVALIDATE_DETAIL_ERROR,
-          StripeException.INVALIDATE_DETAIL_ERROR));
+      subscriber.onError(new CardException(CardException.MESSAGE_INVALIDATE_DETAIL_ERROR,
+          CardException.INVALIDATE_DETAIL_ERROR));
       return false;
     }
 
