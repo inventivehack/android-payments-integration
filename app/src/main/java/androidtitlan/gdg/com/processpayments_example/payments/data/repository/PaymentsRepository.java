@@ -1,10 +1,8 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.repository;
 
-import androidtitlan.gdg.com.processpayments_example.payments.data.entity.CardConekta;
-import androidtitlan.gdg.com.processpayments_example.payments.data.entity.CardStripe;
+import androidtitlan.gdg.com.processpayments_example.payments.data.entity.CardEntity;
 import androidtitlan.gdg.com.processpayments_example.payments.data.entity.PaymentEntity;
 import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
-import com.stripe.android.model.Card;
 import java.util.List;
 import rx.Observable;
 
@@ -17,9 +15,7 @@ import rx.Observable;
  */
 public interface PaymentsRepository {
 
-  Observable<PaymentResponse> addCardStripe(CardStripe cardStripeEntity);
-
-  Observable<PaymentResponse> addCardConekta(CardConekta cardConekta);
+  Observable<PaymentResponse> addCard(CardEntity cardEntity);
 
   Observable<PaymentResponse> addPayPalAccount(PaymentEntity  paymentEntity);
 

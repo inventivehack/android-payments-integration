@@ -1,6 +1,7 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource;
 
 import android.app.Activity;
+import androidtitlan.gdg.com.processpayments_example.payments.data.entity.CardEntity;
 import javax.inject.Inject;
 
 /**
@@ -23,7 +24,12 @@ public class PaymentsDataSourceFactory {
     return new DiskGetPaymentsDataSource();
   }
 
-  public AddPaymentsDataSource createCloudAddPaymentsDataSource() {
-    return new CloudAddPaymentsDataSource(mActivity);
+  public AddCardDataSource createCloudAddPaymentsDataSource(int typePayment) {
+
+    if (typePayment == CardEntity.TYPE_PAYMENT_STRIPE) {
+      return new CloudAddCardStripeDataSource();
+    } else {
+      return new CloudAddCardConektaDataSource(mActivity);
+    }
   }
 }
