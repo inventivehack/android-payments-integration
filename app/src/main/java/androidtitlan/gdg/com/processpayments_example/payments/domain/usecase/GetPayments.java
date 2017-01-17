@@ -9,9 +9,8 @@ import rx.Observable;
 import rx.Subscriber;
 
 /**
- * 04/12/2016.
+ * Implementación del dominio con los casos de uso para obtener los métodos de pago.
  */
-
 public class GetPayments extends UseCase<List<PaymentResponse>> {
 
   private PaymentsRepository mPaymentsRepository;

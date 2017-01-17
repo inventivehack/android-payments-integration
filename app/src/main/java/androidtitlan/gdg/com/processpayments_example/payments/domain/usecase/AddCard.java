@@ -10,7 +10,7 @@ import rx.Observable;
 import rx.Subscriber;
 
 /**
- * Implementación del dominio con los casos de uso para añadir un método de pago.
+ * Implementación del dominio con los casos de uso para añadir una tarjeta a Stripe o Conekta.
  */
 public class AddCard extends UseCaseAddPayment<PaymentResponse> {
 

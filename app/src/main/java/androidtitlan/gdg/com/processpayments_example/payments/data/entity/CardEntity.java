@@ -1,9 +1,8 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.entity;
 
 /**
- * 06/12/2016.
+ * Modelo de datos que creo un objeto Card de Stripe o Conekta.
  */
-
 public class CardEntity {
 
   public static final int TYPE_PAYMENT_STRIPE = 1;

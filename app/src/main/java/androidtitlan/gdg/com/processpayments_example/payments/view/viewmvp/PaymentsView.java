@@ -5,9 +5,9 @@ import androidtitlan.gdg.com.processpayments_example.payments.view.viewmodel.Pay
 import java.util.List;
 
 /**
- * 04/12/2016.
+ * Abstracción de la vista con métodos para la comunicación de la vista con el presentador al
+ * obtener los métodos de pago.
  */
-
 public interface PaymentsView extends Presenter.View {
   void showPayments(List<PaymentViewModel> map);
 

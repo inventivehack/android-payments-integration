@@ -10,6 +10,9 @@ import androidtitlan.gdg.com.processpayments_example.injector.components.Payment
 import androidtitlan.gdg.com.processpayments_example.injector.modules.PaymentsModule;
 import androidtitlan.gdg.com.processpayments_example.payments.view.fragment.PaymentsFragment;
 
+/**
+ * Activity que maneja los métodos de pago.
+ */
 public class PaymentsActivity extends BaseFragActivity implements HasComponent<PaymentsComponent> {
 
   private PaymentsComponent mPaymentsComponent;

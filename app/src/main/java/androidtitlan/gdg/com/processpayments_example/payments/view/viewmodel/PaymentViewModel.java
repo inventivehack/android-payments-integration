@@ -1,11 +1,10 @@
 package androidtitlan.gdg.com.processpayments_example.payments.view.viewmodel;
 
 import androidtitlan.gdg.com.processpayments_example.payments.domain.model.PaymentResponse;
-import java.io.Serializable;
 
 /**
- * Modelo de datos obtenido de {@link PaymentResponse }, estos datos será mostrar en la UI, en
- * este caso será en un lista y será enviado a otras actividades.
+ * Modelo de datos obtenido de {@link PaymentResponse}, estos datos será mostrar en la UI este
+ * caso será en un lista y será enviado a otras actividades.
  */
 public class PaymentViewModel {
 
@@ -38,13 +37,5 @@ public class PaymentViewModel {
 
   public String getTokenPayment() {
     return tokenPayment;
-  }
-
-  @Override public String toString() {
-    return "PaymentViewModel{" +
-        "titlePayment='" + titlePayment + '\'' +
-        ", brand='" + brand + '\'' +
-        ", tokenPayment='" + tokenPayment + '\'' +
-        '}';
   }
 }

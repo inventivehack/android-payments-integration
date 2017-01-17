@@ -9,23 +9,27 @@ import javax.inject.Inject;
  */
 public class PaymentsDataSourceFactory {
 
-  /**
-   * Provee un tipo de fuente de datos del sevidor.
-   *
-   * @return Tipo de fuente.
-   */
   private Activity mActivity;
 
   @Inject public PaymentsDataSourceFactory(Activity activity) {
     mActivity = activity;
   }
 
+  /**
+   * Provee un tipo de fuente de datos local.
+   *
+   * @return Tipo de fuente.
+   */
   public GetPaymentsDataSource createDiskGetPaymentsDataSource() {
     return new DiskGetPaymentsDataSource();
   }
 
+  /**
+   * Provee un tipo de fuente de datos de Stripe o Conekta.
+   *
+   * @return Tipo de fuente.
+   */
   public AddCardDataSource createCloudAddPaymentsDataSource(int typePayment) {
-
     if (typePayment == CardEntity.TYPE_PAYMENT_STRIPE) {
       return new CloudAddCardStripeDataSource();
     } else {

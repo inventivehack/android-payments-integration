@@ -24,7 +24,7 @@ Para más información de Architecture, MVP y el Patrón Repositorio les recomie
  * [Fernando Cejas - Clean Architecture Sample](https://github.com/android10/Android-CleanArchitecture)
  * [Aplicando Clean Architecture en Android](http://erikcaffrey.github.io/2016/01/28/clean-architecture/)
 
-## Librerías y recursos usados en el proyecto
+## Bibliotecas y recursos usados en el proyecto
 * [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html)
 * [Android Design Support Library](https://developer.android.com/topic/libraries/support-library/index.html)
 * [RxJava](https://github.com/ReactiveX/RxJava)

@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 /**
  * Actividad base con modificaciones de la clase {@link AppCompatActivity},
  * esta clase provee una fácil manejo en todas las actividades que realicen la inyección de vistas
- * con {@link ButterKnife} e igualmente comprueba si existe un {@link Toolbar} si existe en la UI.
+ * con {@link ButterKnife} e igualmente comprueba si existe un {@link Toolbar} en la UI.
  *
  * @see ButterKnife
  */

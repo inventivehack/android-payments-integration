@@ -1,7 +1,7 @@
 package androidtitlan.gdg.com.processpayments_example.payments.domain.model;
 
 /**
- * 06/12/2016.
+ * Modelo de datos con los datos de la tarjeta para enviarlos a la capa de Datos.
  */
 
 public class Card {

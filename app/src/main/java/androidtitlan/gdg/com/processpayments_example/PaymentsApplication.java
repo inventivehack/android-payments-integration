@@ -9,9 +9,9 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 /**
- * 04/12/2016.
+ * {@link Application} que inicia la configuración de {@link Realm} y el {@link MainComponent} para
+ * la injección de dependencias.
  */
-
 public class PaymentsApplication extends MultiDexApplication {
 
   private MainComponent mainComponent;
@@ -34,5 +34,4 @@ public class PaymentsApplication extends MultiDexApplication {
     RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
     Realm.setDefaultConfiguration(realmConfiguration);
   }
-
 }

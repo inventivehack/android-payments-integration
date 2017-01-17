@@ -1,8 +1,8 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.exception;
 
 /**
- * Interfaz para el manejo de errores con Stripe de la capa de datos, mayormente son errores de
- * datos invalidos de una tarjeta.
+ * Interfaz para el manejo de errores con Stripe y Conekta de la capa de datos, mayormente son
+ * errores de datos invalidos de una tarjeta.
  */
 public class CardException extends Exception {
 

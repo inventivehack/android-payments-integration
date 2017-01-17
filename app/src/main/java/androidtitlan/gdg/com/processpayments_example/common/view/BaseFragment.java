@@ -27,8 +27,7 @@ import butterknife.Unbinder;
 /**
  * Frament base con modificaciones de la clase {@link Fragment}, esta clase provee una fácil manejo
  * en todos los Fragments que realicen la inyección de vistas con {@link ButterKnife} e igualmente
- * cotiene manejo de Fragments, muestra mensajes {@link Toast} y {@link Snackbar}, muestra y
- * esconde el taclado, etc.
+ * cotiene manejo de Fragments, muestra mensajes {@link Toast} y {@link Snackbar}.
  *
  * @see ButterKnife
  */
@@ -189,11 +188,6 @@ public abstract class BaseFragment extends Fragment {
     ((BaseFragActivity) getActivity()).popFragment();
   }
 
-  /**
-   * Recupera la instancia de {@link Toolbar} dentro de la Actividad.
-   *
-   * @return Toolbar dentro de la Actividad.
-   */
 
   public void clearFragmentStack() {
     int countStack = getFragmentManager().getBackStackEntryCount();
@@ -203,6 +197,11 @@ public abstract class BaseFragment extends Fragment {
     }
   }
 
+  /**
+   * Recupera la instancia de {@link Toolbar} dentro de la Actividad.
+   *
+   * @return Toolbar dentro de la Actividad.
+   */
   @Nullable public Toolbar getToolbar() {
     return ((BaseActivity) getActivity()).getToolbar();
   }

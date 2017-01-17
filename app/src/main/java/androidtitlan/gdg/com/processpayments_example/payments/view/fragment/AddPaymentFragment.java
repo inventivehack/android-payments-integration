@@ -21,9 +21,8 @@ import com.paypal.android.sdk.payments.PayPalService;
 import javax.inject.Inject;
 
 /**
- * 05/12/2016.
+ * Fragment que realiza las operaciones para añadir una opción de pago..
  */
-
 public class AddPaymentFragment extends BaseFragment implements AddPaymentsView {
 
   private static final int REQUEST_CODE_PAYPAL = 12;
@@ -67,6 +66,12 @@ public class AddPaymentFragment extends BaseFragment implements AddPaymentsView 
     mPresenter.setView(this);
   }
 
+  /**
+   * Inicia la configuración para agregar una cuenta de PayPal.
+   *
+   * @see <p>Para más información ver la documentación del <a href=" https://github.com/paypal/PayPal-Android-SDK">SDK
+   * de Paypal </a></p>
+   */
   private void initializeConfigurationPaypal() {
     mPayPalConfiguration =
         new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
@@ -76,12 +81,37 @@ public class AddPaymentFragment extends BaseFragment implements AddPaymentsView 
             .merchantUserAgreementUri(Uri.parse(URL_USER_AGREEMENT_PAYPAL));
   }
 
+  /**
+   * Inicia un {@link PayPalService} para agregar una cuenta de PayPal.
+   *
+   * @see <p>Para más información ver la documentación del <a href=" https://github.com/paypal/PayPal-Android-SDK">SDK
+   * de Paypal </a></p>
+   */
   private void initializeServicePaypal() {
     Intent intent = new Intent(getContext(), PayPalService.class);
     intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, mPayPalConfiguration);
     getContext().startService(intent);
   }
 
+  @Override public void onDestroyView() {
+    finishPaypalService();
+    super.onDestroyView();
+  }
+
+  /**
+   * Finaliza un {@link PayPalService} para agregar una cuenta de PayPal.
+   *
+   * @see <p>Para más información ver la documentación del <a href=" https://github.com/paypal/PayPal-Android-SDK">SDK
+   * de Paypal </a></p>
+   */
+  private void finishPaypalService() {
+    getContext().stopService(new Intent(getContext(), PayPalService.class));
+  }
+
+  /**
+   * Si obtuvo un cuenta de PayPal con exito la envia el servidor en caso contrario muestra un
+   * mensaje de error.
+   */
   @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == REQUEST_CODE_PAYPAL) {
@@ -99,15 +129,9 @@ public class AddPaymentFragment extends BaseFragment implements AddPaymentsView 
     }
   }
 
-  @Override public void onDestroyView() {
-    finishPaypalService();
-    super.onDestroyView();
-  }
-
-  private void finishPaypalService() {
-    getContext().stopService(new Intent(getContext(), PayPalService.class));
-  }
-
+  /*
+   * Callbacks de la vista al fragment.
+   */
   @OnClick(R.id.btn_add_stripe) public void clickOptionStripe() {
     mPresenter.selectStripe();
   }
@@ -120,6 +144,9 @@ public class AddPaymentFragment extends BaseFragment implements AddPaymentsView 
     mPresenter.selectPaypal();
   }
 
+  /*
+   * Acciones realizadas por el presentador en la vista.
+   */
   @Override public void showAddStripeCardScreen() {
     addFragment(AddCardFragment.newInstance(AddCardFragment.TYPE_PAYMENT_STRIPE),
         R.anim.slide_in_left, R.anim.slide_out_left, R.anim.slide_in_right, R.anim.slide_out_right);

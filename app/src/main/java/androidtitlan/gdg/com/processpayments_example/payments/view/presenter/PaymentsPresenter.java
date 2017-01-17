@@ -9,6 +9,14 @@ import java.util.List;
 import javax.inject.Inject;
 import rx.Subscriber;
 
+/**
+ * Presentador para obtener todos los métodos de pago, maneja toda la lógica de la vista que se
+ * conecta a la capa de Dominio y está a la capa de Datos.
+ *
+ * @see <p>Para más información investigar más sobre el patrón <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">Model
+ * View Presenter</a></p>
+ */
+
 public class PaymentsPresenter extends Presenter<PaymentsView> {
 
   private GetPayments getPaymentsUseCase;
@@ -20,11 +28,17 @@ public class PaymentsPresenter extends Presenter<PaymentsView> {
     mMapper = mapper;
   }
 
+  /**
+   * Obtiene los métodos de pago.
+   */
   @Override public void initialize() {
     super.initialize();
     getPaymentsUseCase.execute(new GetPaymentsSubscriber());
   }
 
+  /**
+   * Muestra la pantalla para añadir una método de pago.
+   */
   public void addPayment() {
     getView().showAddPaymentScreen();
   }
@@ -42,6 +56,9 @@ public class PaymentsPresenter extends Presenter<PaymentsView> {
       e.printStackTrace();
     }
 
+    /**
+     * Muestra los métodos de pago.
+     */
     @Override public void onNext(List<PaymentResponse> paymentResponses) {
       getView().showPayments(mMapper.map(paymentResponses));
     }

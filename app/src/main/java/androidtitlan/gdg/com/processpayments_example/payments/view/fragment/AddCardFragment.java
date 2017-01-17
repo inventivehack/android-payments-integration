@@ -27,7 +27,7 @@ import com.stripe.android.model.Card;
 import javax.inject.Inject;
 
 /**
- * 05/12/2016.
+ * Fragment que realiza las operaciones para añadir un tarjeta como método de pago.
  */
 public class AddCardFragment extends BaseFragment implements AddCardStripeView {
 
@@ -101,6 +101,9 @@ public class AddCardFragment extends BaseFragment implements AddCardStripeView {
     clearErrorTextInputLayout(mContainerInputNumberCard);
   }
 
+  /**
+   * Por medio de {@link Card} muestra el tipo de tarjeta.
+   */
   private void showTypeCard(String numberCard) {
     int imageRes = 0;
 
@@ -139,6 +142,9 @@ public class AddCardFragment extends BaseFragment implements AddCardStripeView {
     containerInputName.setErrorEnabled(false);
   }
 
+  /*
+   * Callbacks de la vista al fragment.
+   */
   @OnTextChanged(R.id.input_month) public void changeTextMonth(CharSequence text) {
     hideMessageErrorCard();
   }
@@ -151,6 +157,9 @@ public class AddCardFragment extends BaseFragment implements AddCardStripeView {
     hideMessageErrorCard();
   }
 
+  /*
+   * Acciones realizadas por el presentador en la vista.
+   */
   @Override public void showMessageNumberCardEmpty() {
     mContainerInputNumberCard.setError(getString(R.string.message_number_card_empty));
   }

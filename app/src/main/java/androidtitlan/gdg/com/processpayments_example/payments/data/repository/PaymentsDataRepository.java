@@ -18,7 +18,7 @@ import rx.functions.Func1;
  *
  * <p>En esta parte los datos obtenidos son convertidos a otro Modelo de datos Para la Capa de
  * dominio con un {@link Mapper} y en {@link Observable#map(Func1)}, según el principio de
- * independencia de Capas en Clean Architecture.</p>
+ * independencia de capas en Clean Architecture.</p>
  *
  * @see <a href="http://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/">Clean
  * Architecture</a>

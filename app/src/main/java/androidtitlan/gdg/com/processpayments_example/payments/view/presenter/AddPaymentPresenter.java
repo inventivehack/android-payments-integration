@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import rx.Subscriber;
 
 /**
- * Presentador al obtener para añadir un tarjeta como método de pago que maneja toda la lógica de
- * la vista que se conecta a la capa de Dominio y está a la capa de Datos.
+ * Presentador para añadir un método de pago, maneja toda la lógica de la vista que se conecta a la
+ * capa de Dominio y está a la capa de Datos.
  *
  * @see <p>Para más información investigar más sobre el patrón <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">Model
  * View Presenter</a></p>
@@ -22,18 +22,30 @@ public class AddPaymentPresenter extends Presenter<AddPaymentsView> {
     mAddPayPalAccount = addPayPalAccount;
   }
 
+  /**
+   * Muestra la pantalla para añadir una tarjeta con Stripe.
+   */
   public void selectStripe() {
     getView().showAddStripeCardScreen();
   }
 
+  /**
+   * Muestra la pantalla para añadir una tarjeta con Conekta.
+   */
   public void selectConekta() {
     getView().showAddConektaCardScreen();
   }
 
+  /**
+   * Muestra la pantalla para añadir una cuenta de PayPal.
+   */
   public void selectPaypal() {
     getView().showAddPaypalScreen();
   }
 
+  /**
+   * Muestra un mensaje de error de PayPal.
+   */
   public void errorAddPaypal() {
     getView().showErrorAddPaypal();
   }
@@ -41,6 +53,9 @@ public class AddPaymentPresenter extends Presenter<AddPaymentsView> {
   @Override public void destroy() {
   }
 
+  /**
+   * Enviar el código de autorización al servidor.
+   */
   public void sendAuthorizationCodePaypal(String authorizationCode) {
     mAddPayPalAccount.executeAddPayPalAccount(authorizationCode, new AddPayPalAccountSubscriber());
   }

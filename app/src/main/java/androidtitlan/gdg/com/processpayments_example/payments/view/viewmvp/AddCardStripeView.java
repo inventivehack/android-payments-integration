@@ -4,7 +4,7 @@ import androidtitlan.gdg.com.processpayments_example.common.view.Presenter;
 
 /**
  * Abstracción de la vista con métodos para la comunicación de la vista con el presentador al
- * añadir un tarjeta como método de pago.
+ * añadir un tarjeta a Stripe o Conecta.
  */
 public interface AddCardStripeView extends Presenter.View {
 

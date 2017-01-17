@@ -2,7 +2,7 @@ package androidtitlan.gdg.com.processpayments_example.payments.data.exception;
 
 
 /**
- * Manejador de errores con Stripe de la capa de datos.
+ * Manejador de errores con Stripe y Conekta de la capa de datos.
  */
 public class CardErrorHandling {
 

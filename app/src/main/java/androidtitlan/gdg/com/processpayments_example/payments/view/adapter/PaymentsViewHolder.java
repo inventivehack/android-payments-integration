@@ -10,7 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * View Holder que maneja el ítem para mostrar la la información de método de pago.
+ * View Holder que maneja el ítem para mostrar la información de un método de pago.
  */
 public class PaymentsViewHolder extends RecyclerView.ViewHolder {
 

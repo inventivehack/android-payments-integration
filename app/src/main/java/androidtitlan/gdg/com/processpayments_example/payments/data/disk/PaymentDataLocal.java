@@ -4,9 +4,8 @@ import androidtitlan.gdg.com.processpayments_example.payments.data.entity.Paymen
 import java.util.List;
 
 /**
- * 05/12/2016.
+ * Operaciones sobre la base de datos local de los métodos de pago.
  */
-
 public interface PaymentDataLocal {
 
   void savePayment(PaymentEntity paymentEntity);

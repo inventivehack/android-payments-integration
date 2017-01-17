@@ -18,10 +18,13 @@ import butterknife.OnClick;
 import java.util.List;
 import javax.inject.Inject;
 
+/**
+ * Fragment que realiza las operaciones para obtener los métodos de pago.
+ */
 public class PaymentsFragment extends BaseFragment implements PaymentsView {
 
   @BindView(R.id.list_payments) RecyclerView mListPayments;
-  PaymentsAdapter mAdapter;
+  private PaymentsAdapter mAdapter;
   @Inject PaymentsPresenter mPresenter;
 
   @Override protected void setupActionBar(ActionBar actionBar) {
@@ -54,7 +57,6 @@ public class PaymentsFragment extends BaseFragment implements PaymentsView {
     getComponent(PaymentsComponent.class).inject(this);
   }
 
-
   private void initializePresenter() {
     mPresenter.setView(this);
   }
@@ -70,10 +72,16 @@ public class PaymentsFragment extends BaseFragment implements PaymentsView {
         new ItemLinearDecorator(getContext(), ItemLinearDecorator.VERTICAL_LIST));
   }
 
+  /*
+   * Callbacks de la vista al fragment.
+   */
   @OnClick(R.id.btn_add_payment) public void clickAddPayment() {
     mPresenter.addPayment();
   }
 
+  /*
+   * Acciones realizadas por el presentador en la vista.
+   */
   @Override public void showPayments(List<PaymentViewModel> viewModelList) {
     mAdapter.setAll(viewModelList);
   }

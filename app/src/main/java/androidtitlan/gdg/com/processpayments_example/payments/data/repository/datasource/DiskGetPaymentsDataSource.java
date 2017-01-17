@@ -7,8 +7,15 @@ import androidtitlan.gdg.com.processpayments_example.payments.domain.model.Payme
 import java.util.List;
 import rx.Observable;
 
+
+/**
+ * Implementación local para manejar los métodos de pago.
+ */
 public class DiskGetPaymentsDataSource implements GetPaymentsDataSource {
 
+  /**
+   * Obtenemos los métodos de pago almacenados localmente.
+   */
   @Override public Observable<List<PaymentEntity>> getPayments() {
     return Observable.create(subscriber -> {
       PaymentDataLocal paymentDataLocal = new PaymentDataImple();
@@ -17,6 +24,10 @@ public class DiskGetPaymentsDataSource implements GetPaymentsDataSource {
     });
   }
 
+
+  /**
+   * Guardamos un método de pago.
+   */
   @Override public Observable<PaymentEntity> addPayPalAccount(PaymentEntity paymentEntity) {
     return Observable.create(subscriber -> {
       PaymentDataLocal paymentDataLocal = new PaymentDataImple();

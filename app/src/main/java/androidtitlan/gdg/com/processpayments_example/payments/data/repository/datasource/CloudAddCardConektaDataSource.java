@@ -1,7 +1,6 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource;
 
 import android.app.Activity;
-import android.util.Log;
 import androidtitlan.gdg.com.processpayments_example.BuildConfig;
 import androidtitlan.gdg.com.processpayments_example.payments.data.disk.PaymentDataImple;
 import androidtitlan.gdg.com.processpayments_example.payments.data.disk.PaymentDataLocal;
@@ -20,7 +19,6 @@ import rx.Subscriber;
  */
 public class CloudAddCardConektaDataSource implements AddCardDataSource {
 
-  private static final String LOG_TAG = CloudAddCardConektaDataSource.class.getSimpleName();
   private Activity mActivity;
 
   public CloudAddCardConektaDataSource(Activity activity) {
@@ -28,13 +26,13 @@ public class CloudAddCardConektaDataSource implements AddCardDataSource {
   }
 
   /**
-   * Añadimos una tarjeta con Stripe, pero antes de eso hace las validaciones con {@link Card} e
-   * igualmente si ocurre un error.
+   * Añadimos una tarjeta con Conekta, pero antes de eso capturamos las exepciones del objeto
+   * {@link Card} si un campo es invalido.Sí hubo exito obtenemos el Token, sino procesamos el
+   * error.
    *
-   * @see <p>Para más información investigar más sobre <a href=" https://stripe.com/docs/mobile/android">Stripe</a>.
+   * @see <p>Para más información investigar más sobre <a href="https://www.conekta.io/es/docs/referencias/conekta-android">Conekta</a>.
    * </p>
    */
-
   @Override public Observable<PaymentEntity> addCard(CardEntity cardEntity) {
     return Observable.create(new Observable.OnSubscribe<PaymentEntity>() {
       @Override public void call(Subscriber<? super PaymentEntity> subscriber) {
@@ -43,7 +41,6 @@ public class CloudAddCardConektaDataSource implements AddCardDataSource {
         Conekta.collectDevice(mActivity);
         Token token = new Token(mActivity);
         token.onCreateTokenListener(data -> {
-          Log.d(LOG_TAG, data.toString());
           try {
             if (data.has("id")) {
               Card cardStripe = new Card(cardEntity.getNumber(), 0, 0, "");

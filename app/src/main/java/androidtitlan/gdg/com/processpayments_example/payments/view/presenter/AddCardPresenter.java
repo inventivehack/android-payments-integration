@@ -11,16 +11,13 @@ import javax.inject.Inject;
 import rx.Subscriber;
 
 /**
- * Presentador al obtener para añadir un tarjeta como método de pago que maneja toda la lógica de
- * la vista que se conecta a la capa de Dominio y está a la capa de Datos.
+ * Presentador para añadir un tarjeta como método de pago a Stripe o Conekta, maneja toda la lógica
+ * de la vista que se conecta a la capa de Dominio y está a la capa de Datos.
  *
  * @see <p>Para más información investigar más sobre el patrón <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">Model
  * View Presenter</a></p>
  */
 public class AddCardPresenter extends Presenter<AddCardStripeView> {
-
-  public static final int TYPE_PAYMENT_STRIPE = 1;
-  public static final int TYPE_PAYMENT_CONEKTA = 2;
 
   private AddCard mUseCaseAddPayment;
 
@@ -80,7 +77,7 @@ public class AddCardPresenter extends Presenter<AddCardStripeView> {
     }
 
     /**
-     * Al obtener el token de stripe, se procede a enviarlo al servidor.
+     * Al obtener el token, se procede a enviarlo al servidor.
      */
     @Override public void onNext(PaymentResponse paymentResponse) {
       getView().showToken(paymentResponse.getTokenPayment());
@@ -89,8 +86,8 @@ public class AddCardPresenter extends Presenter<AddCardStripeView> {
   }
 
   /**
-   * Al ocurrir un error, obtiene el tipo de erro que puede ser de Stripe, del servidor o de
-   * conexión.
+   * Al ocurrir un error, obtiene el tipo de erro que puede ser de Stripe, de Conekta, del servidor
+   * o de conexión.
    */
   private void showStripeMessageError(Throwable e) {
     CardErrorHandling stripeErrorHandling = new CardErrorHandling(e);

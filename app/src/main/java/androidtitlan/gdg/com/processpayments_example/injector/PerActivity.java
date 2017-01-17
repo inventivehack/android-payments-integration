@@ -9,5 +9,8 @@ import javax.inject.Scope;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * Scope para las dependencias de las actividades.
+ */
 @Scope @Retention(RUNTIME)
 public @interface PerActivity {}

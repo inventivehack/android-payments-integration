@@ -7,7 +7,7 @@ import java.util.List;
 import rx.Observable;
 
 /**
- * Repositorio manejar las opciones de pago.
+ * Repositorio para manejar las opciones de pago.
  *
  * @see <p>Para más información investigar más sobre <a href="http://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/">Clean
  * Architecture</a> y el <a href="http://martinfowler.com/eaaCatalog/repository.html">Patrón
@@ -17,7 +17,7 @@ public interface PaymentsRepository {
 
   Observable<PaymentResponse> addCard(CardEntity cardEntity);
 
-  Observable<PaymentResponse> addPayPalAccount(PaymentEntity  paymentEntity);
+  Observable<PaymentResponse> addPayPalAccount(PaymentEntity paymentEntity);
 
   Observable<List<PaymentResponse>> getPayments();
 }

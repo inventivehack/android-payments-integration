@@ -6,9 +6,8 @@ import androidtitlan.gdg.com.processpayments_example.payments.domain.model.Payme
 import javax.inject.Inject;
 
 /**
- * 04/12/2016.
+ * Mapper que convierte {@link PaymentEntity} a {@link PaymentResponse}
  */
-
 public class PaymentEntityToPaymentResponseMapper extends Mapper<PaymentEntity, PaymentResponse> {
 
   @Inject public PaymentEntityToPaymentResponseMapper() {

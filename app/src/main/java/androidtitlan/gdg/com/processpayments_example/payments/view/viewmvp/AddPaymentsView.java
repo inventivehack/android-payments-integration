@@ -4,7 +4,7 @@ import androidtitlan.gdg.com.processpayments_example.common.view.Presenter;
 
 /**
  * Abstracción de la vista con métodos para la comunicación de la vista con el presentador al
- * añadir una opción de pago.
+ * añadir un método de pago.
  */
 public interface AddPaymentsView extends Presenter.View {
 

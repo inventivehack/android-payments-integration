@@ -1,6 +1,5 @@
 package androidtitlan.gdg.com.processpayments_example.payments.data.repository.datasource;
 
-import android.app.Activity;
 import androidtitlan.gdg.com.processpayments_example.BuildConfig;
 import androidtitlan.gdg.com.processpayments_example.payments.data.disk.PaymentDataImple;
 import androidtitlan.gdg.com.processpayments_example.payments.data.disk.PaymentDataLocal;
@@ -19,12 +18,9 @@ import rx.Subscriber;
  */
 public class CloudAddCardStripeDataSource implements AddCardDataSource {
 
-  private static final String LOG_TAG = CloudAddCardStripeDataSource.class.getSimpleName();
-
-
   /**
-   * Añadimos una tarjeta con Stripe, pero antes de eso hace las validaciones con {@link Card} e
-   * igualmente si ocurre un error.
+   * Añadimos una tarjeta con Stripe, pero antes de eso hacemos las validaciones del objeto {@link
+   * Card}.Sí hubo exito regresamos el Token, sino procesamos el error.
    *
    * @see <p>Para más información investigar más sobre <a href=" https://stripe.com/docs/mobile/android">Stripe</a>.
    * </p>

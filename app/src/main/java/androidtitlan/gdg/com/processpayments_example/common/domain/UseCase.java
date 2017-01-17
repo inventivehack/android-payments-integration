@@ -9,8 +9,8 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.Subscriptions;
 
 /**
- * Dominio con un caso de uso por default. Para comunicar las capa de presentación con las capa de
- * dominio utiliza {@link Observable} de RxJava.
+ * Dominio con un caso de uso asíncrono por default. Para comunicar las capa de presentación con las
+ * capa de dominio utiliza un {@link Observable} de RxJava.
  *
  * @see <p>Para más información investigar más sobre <a href="http://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/">Clean
  * Architecture</a> y <a href="http://reactivex.io/intro.html">Programción Reactiva con

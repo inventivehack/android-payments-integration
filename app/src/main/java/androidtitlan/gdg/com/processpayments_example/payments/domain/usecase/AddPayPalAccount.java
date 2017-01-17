@@ -9,9 +9,8 @@ import rx.Observable;
 import rx.Subscriber;
 
 /**
- * 05/12/2016.
+ * Implementación del dominio con los casos de uso para añadir una cuenta de PayPal.
  */
-
 public class AddPayPalAccount extends UseCase<PaymentResponse> {
 
   private PaymentsRepository mRepository;

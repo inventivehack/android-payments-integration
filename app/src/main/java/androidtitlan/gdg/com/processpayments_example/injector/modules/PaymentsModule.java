@@ -7,6 +7,14 @@ import androidtitlan.gdg.com.processpayments_example.payments.data.repository.Pa
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * Componente de los métodos de pago para crear las dependencias necesarias para la actividad y
+ * fragmentos.
+ *
+ * @see <p>Para más información sobre inyección de dependencias, ver el siguiente post <a
+ * href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/ "> Tasting Dagger 2 on
+ * Android</a></p>
+ */
 @Module public class PaymentsModule {
 
   private final Activity activity;

@@ -2,6 +2,11 @@ package androidtitlan.gdg.com.processpayments_example.payments.data.entity;
 
 import io.realm.RealmObject;
 
+
+/**
+ * Modelo de datos de los métodos de pago para ser almacenados localmente.
+ */
+
 public class PaymentEntity extends RealmObject {
 
   private String titlePayment;
@@ -27,13 +32,5 @@ public class PaymentEntity extends RealmObject {
 
   public String getTokenPayment() {
     return tokenPayment;
-  }
-
-  @Override public String toString() {
-    return "PaymentEntity{" +
-        "titlePayment='" + titlePayment + '\'' +
-        ", brand='" + brand + '\'' +
-        ", tokenPayment='" + tokenPayment + '\'' +
-        '}';
   }
 }
