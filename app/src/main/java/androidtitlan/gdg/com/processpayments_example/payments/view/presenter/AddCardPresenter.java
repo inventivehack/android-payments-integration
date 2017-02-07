@@ -65,11 +65,17 @@ public class AddCardPresenter extends Presenter<AddCardStripeView> {
     mUseCaseAddPayment.unSubscribe();
   }
 
+  /**
+   * {@link Subscriber} que obtiene el Token.
+   */
   private class AddCardStripeSubscriber extends Subscriber<PaymentResponse> {
     @Override public void onCompleted() {
       getView().hideLoginAddCard();
     }
 
+    /**
+     * Mostramos el mensaje de error.
+     */
     @Override public void onError(Throwable e) {
       getView().hideLoginAddCard();
       showStripeMessageError(e);
@@ -77,7 +83,7 @@ public class AddCardPresenter extends Presenter<AddCardStripeView> {
     }
 
     /**
-     * Al obtener el token, se procede a enviarlo al servidor.
+     * Al obtener el token, debería ser enviado al servidor.
      */
     @Override public void onNext(PaymentResponse paymentResponse) {
       getView().showToken(paymentResponse.getTokenPayment());

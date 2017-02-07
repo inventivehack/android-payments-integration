@@ -18,34 +18,38 @@ import rx.Subscriber;
  */
 public class CloudAddCardStripeDataSource implements AddCardDataSource {
 
-  /**
-   * Añadimos una tarjeta con Stripe, pero antes de eso hacemos las validaciones del objeto {@link
-   * Card}.Sí hubo exito regresamos el Token, sino procesamos el error.
-   *
-   * @see <p>Para más información investigar más sobre <a href=" https://stripe.com/docs/mobile/android">Stripe</a>.
-   * </p>
-   */
   @Override public Observable<PaymentEntity> addCard(CardEntity cardEntity) {
     return Observable.create(new Observable.OnSubscribe<PaymentEntity>() {
+
       @Override public void call(Subscriber<? super PaymentEntity> subscriber) {
 
+        // Creamos el objeto Card de Stripe
         Card card = cardEntity.provideCardStripe();
 
         if (validateCard(card, subscriber)) {
           new Stripe().createToken(card, BuildConfig.STRIPE_KEY, new TokenCallback() {
-            @Override public void onError(Exception error) {
-              subscriber.onError(
-                  new CardException(error.getMessage(), CardException.CARD_SERVER_ERROR));
-            }
 
+            /**
+             * Obtener el token.
+             */
             @Override public void onSuccess(Token token) {
               subscriber.onNext(new PaymentEntity(card.getLast4(), card.getType(), token.getId()));
               subscriber.onCompleted();
             }
+
+            /**
+             * Obtenemos el error que recibimos de la respuesta.
+             */
+            @Override public void onError(Exception error) {
+              subscriber.onError(
+                  new CardException(error.getMessage(), CardException.CARD_SERVER_ERROR));
+            }
           });
         }
       }
-    }).doOnNext(this::savePayment);
+    })
+        // Guardamos lo datos obtenidos localmente.
+        .doOnNext(this::savePayment);
   }
 
   private boolean validateCard(Card card, Subscriber subscriber) {

@@ -21,6 +21,9 @@ public class AddCard extends UseCaseAddPayment<PaymentResponse> {
     mRepository = repository;
   }
 
+  /**
+   * Añadimos la tarjeta a Stripe o Conekta y registramos el Subscriber del Presentador.
+   */
   public void executeAddCard(String numberCard, String month, String year, String cvv,
       int typePayment, Subscriber<PaymentResponse> useCaseSubscriber) {
     card = new Card(numberCard, month, year, cvv, typePayment);
@@ -28,6 +31,9 @@ public class AddCard extends UseCaseAddPayment<PaymentResponse> {
     super.execute(useCaseSubscriber);
   }
 
+  /**
+   * Creamos el Observable  que responderá al Subscriber a partir de nuestro repositorio.
+   */
   @Override protected Observable<PaymentResponse> buildObservableUseCase() {
     return mRepository.addCard(
         new CardEntity(card.getNumber(), card.getCvc(), card.getExpMonth(), card.getExtYear(),

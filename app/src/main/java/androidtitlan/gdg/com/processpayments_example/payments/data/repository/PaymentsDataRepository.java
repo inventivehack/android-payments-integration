@@ -34,6 +34,10 @@ public class PaymentsDataRepository implements PaymentsRepository {
     mMapper = mapper;
   }
 
+  /**
+   * Añadimos nuestra tarjeta, usamos la bandera CardEntity.getTypePayment(). y el objeto
+   * mSourceFactory para decidir que recurso usamos.
+   */
   @Override public Observable<PaymentResponse> addCard(CardEntity cardEntity) {
     final AddCardDataSource paymentsDataSource =
         mSourceFactory.createCloudAddPaymentsDataSource(cardEntity.getTypePayment());

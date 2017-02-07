@@ -26,12 +26,9 @@ public class CloudAddCardConektaDataSource implements AddCardDataSource {
   }
 
   /**
-   * Añadimos una tarjeta con Conekta, pero antes de eso capturamos las exepciones del objeto
-   * {@link Card} si un campo es invalido.Sí hubo exito obtenemos el Token, sino procesamos el
-   * error.
-   *
-   * @see <p>Para más información investigar más sobre <a href="https://www.conekta.io/es/docs/referencias/conekta-android">Conekta</a>.
-   * </p>
+   * Añadimos una tarjeta con Conekta, capturamos las excepciones del objeto {@link Card} si un
+   * campo es invalido, en caso contrario enviamos los datos de la tarjeta  y obtenemos el Token o
+   * procesamos el error obtenido.
    */
   @Override public Observable<PaymentEntity> addCard(CardEntity cardEntity) {
     return Observable.create(new Observable.OnSubscribe<PaymentEntity>() {
@@ -41,6 +38,9 @@ public class CloudAddCardConektaDataSource implements AddCardDataSource {
         Conekta.collectDevice(mActivity);
         Token token = new Token(mActivity);
         token.onCreateTokenListener(data -> {
+
+          // Obtenemos el Id o Token de la respuesta, si no existe entonces obtenemos el mensaje
+          // de error
           try {
             if (data.has("id")) {
               Card cardStripe = new Card(cardEntity.getNumber(), 0, 0, "");
@@ -57,13 +57,17 @@ public class CloudAddCardConektaDataSource implements AddCardDataSource {
           subscriber.onCompleted();
         });
 
+        // Añadimos la tarjeta a Conekta, pero si alguna campo es invalido al momento de crear
+        // nuestro objeto tarjeta, procesamos la Excepción y enviamos el error.
         try {
           token.create(cardEntity.provideCardConekta());
         } catch (RuntimeException e) {
           subscriber.onError(getTypeError(e.getMessage()));
         }
       }
-    }).doOnNext(this::savePayment);
+    })
+        // Guardamos los datos obtenidos localmente.
+        .doOnNext(this::savePayment);
   }
 
   private CardException getTypeError(String message) {

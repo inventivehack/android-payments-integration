@@ -1,6 +1,6 @@
 # Integración de pagos en Android
  
-![Icon Urbvan](./app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+![Icon Urbvan](./logo_payments.png)
 
 Ejemplo que contiene la implementación de [Stripe][stripe], [Conekta][conekta] y [PayPal][paypal] con [Clean Architecture][clean_architecture].
 
@@ -10,6 +10,10 @@ Ejemplo que contiene la implementación de [Stripe][stripe], [Conekta][conekta] 
 [paypal]: https://developer.paypal.com/
 
 [Procesando pagos en Android - Primera parte](https://blog.inventivehack.com/procesando-pagos-en-android/)
+
+[Procesando pagos en Android con Clean Architecture](https://blog.inventivehack.com/android-clean-architecture/)
+
+
 
 ## Arquitectura
 
